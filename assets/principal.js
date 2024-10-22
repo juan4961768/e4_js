@@ -101,3 +101,25 @@ const loadAndPrint = (pokemonsList) => {
     caja.innerHTML = cards;
 
   };
+
+  async function myFunction() {
+    try{
+
+   
+    var numero = document.getElementById("miNumero").value;
+   url= baseURL+numero;
+   console.log(url);
+   const nextPokemons = await fetch(url);
+   //console.log(await nextPokemons.json());
+   //const poquemon = await nextPokemons.json();
+   cards= renderPokemon(  await nextPokemons.json() ); 
+
+    const caja = document.querySelector("#caja");
+    caja.innerHTML = cards;
+  }
+  catch(error){
+    console.error("Error: ", error);
+    caja.innerHTML = "Error no pudo ejecutar el servicio  "+ error;
+  }
+
+  };
